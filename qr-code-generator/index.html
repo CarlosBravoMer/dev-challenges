@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR code generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"
+      integrity="sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <main class="main">
+        <div class="container">
+          <div class="logo">
+            <img src="logo-qr-generator.svg" alt="QR generator logo" />
+          </div>
+
+          <div class="qr-generate">
+            <input required type="text" placeholder="Enter an url" class="url-input"/>
+            <button class="qr-btn">QR code</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-qr" style="display: none;">
+        <div>
+          <img src="logo-qr-generator.svg" alt="QR generator logo" />
+        </div>
+
+        <div class="qr-code-container">
+          <div class="qr-code">
+            <div
+              id="qrcode"
+              style="background-color: #fff; padding: 24px; border-radius: 16px"
+            ></div>
+          </div>
+
+          <div class="button-container">
+            <div class="download-button">
+              <button class="download">Download</button>
+            </div>
+            <div class="share-button">
+              <button>Share</button>
+            </div>
+            <div class="back-button">
+              <button>Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
