@@ -1,4 +1,4 @@
-|                         | CODE                                                                                       | LIVE                                                |
+|PROJECTS                        | CODE                                                                                       | LIVE                                                |
 | ----------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | Business blog card      | [View](https://github.com/CarlosBravoMer/dev-challenges/tree/main/business-blog%20-card)   | [View](https://business-blog-card-cbm.netlify.app/) |
 | Minimal blog card       | [View](https://github.com/CarlosBravoMer/dev-challenges/tree/main/minimal-blog-card)       | [View](https://minimal-blog-card-cbm.netlify.app/)  |
