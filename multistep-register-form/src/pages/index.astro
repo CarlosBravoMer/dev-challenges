@@ -1,0 +1,204 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FirstInput from "../components/FirstInput.astro";
+import SecondInput from "../components/SecondInput.astro";
+import ThirdInput from "../components/ThirdInput.astro";
+---
+
+<Layout title="Multi-step Register Form">
+  <FirstInput />
+  <SecondInput />
+  <ThirdInput />
+
+  <div class="step-container flex justify-center items-center gap-4 mt-4"></div>
+</Layout>
+
+<script>
+  const stepContainer = document.querySelector(".step-container");
+  var count = 1;
+  stepContainer.innerHTML = `
+    <h3 class="text-[#4D5562] text-xs font-semibold">Step ${count} of 3</h3>
+    <div class="flex items-center gap-4">
+      <div class="step-one flex justify-center items-center h-4 w-4 rounded-full bg-[#845EEE]/50">
+        <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+      </div>
+      <div class="step-two flex justify-center items-center h-4 w-4 rounded-full">
+        <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+      </div>
+      <div class="step-three flex justify-center items-center h-4 w-4 rounded-full">
+        <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+      </div>
+    </div>
+  `;
+
+  // PRIMER FORM
+  const formOne = document.querySelector(".form-one");
+  const name = document.querySelector(".form-one-name");
+  const email = document.querySelector(".form-one-email");
+
+  var nameValueFinal, emailValueFinal;
+
+  formOne.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nameValue = name.value.trim();
+    const emailValue = email.value.trim();
+
+    const nameValueRegex = /^[a-zA-Z ]{2,30}$/;
+    const emailValueRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nameValueRegex.test(nameValue)) {
+      alert("Please enter a valid name");
+    } else {
+      if (!emailValueRegex.test(emailValue)) {
+        alert("Please enter a valid email");
+      } else {
+        count++;
+        stepContainer.innerHTML = `
+          <h3 class="text-[#4D5562] text-xs font-semibold">Step ${count} of 3</h3>
+          <div class="flex items-center gap-4">
+            <div class="step-one flex justify-center items-center h-4 w-4 rounded-full">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+            <div class="step-two flex justify-center items-center h-4 w-4 rounded-full bg-[#845EEE]/50">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+            <div class="step-three flex justify-center items-center h-4 w-4 rounded-full">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+          </div>
+                  `;
+        formOne.classList.add("hidden");
+        formTwo.classList.remove("hidden");
+      }
+    }
+
+    nameValueFinal = nameValue;
+    emailValueFinal = emailValue;
+  });
+
+  // SEGUNDO FORM
+
+  const softwareDevelopment = document.querySelector(".software-development");
+  const userExperience = document.querySelector(".user-experience");
+  const graphicDesign = document.querySelector(".graphic-designer");
+  const formTwo = document.querySelector(".form-two");
+
+  var softwareDevelopmentValueFinal,
+    userExperienceValueFinal,
+    graphicDesignValueFinal;
+
+  formTwo.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (
+      !softwareDevelopment.classList.contains("bg-[#845EEE]") &&
+      !userExperience.classList.contains("bg-[#845EEE]") &&
+      !graphicDesign.classList.contains("bg-[#845EEE]")
+    ) {
+      alert("Please select at least one topic");
+    } else {
+      formTwo.classList.add("hidden");
+      formThree.classList.remove("hidden");
+
+      if (softwareDevelopment.classList.contains("bg-[#845EEE]")) {
+        softwareDevelopmentValueFinal = "Software Development";
+      } else {
+        softwareDevelopmentValueFinal = "";
+      }
+
+      if (userExperience.classList.contains("bg-[#845EEE]")) {
+        userExperienceValueFinal = "User Experience";
+      } else {
+        userExperienceValueFinal = "";
+      }
+
+      if (graphicDesign.classList.contains("bg-[#845EEE]")) {
+        graphicDesignValueFinal = "Graphic Design";
+      } else {
+        graphicDesignValueFinal = "";
+      }
+
+      formThree.innerHTML = `
+      <h2 class="text-xl font-bold text-[#E5E7EB]">Summary</h2>
+
+      <div class="mt-8 font-semibold">
+        <div>
+          <span class="text-[#A1A1A9]">Name:</span>
+          <span class="text-[#E5E7EB]">${nameValueFinal}</span>
+        </div>
+        <div>
+          <span class="text-[#A1A1A9]">Email:</span>
+          <span class="text-[#E5E7EB]">${emailValueFinal}</span>
+        </div>
+      </div>
+
+      <ul class="list-disc list-inside mt-8 font-semibold">
+    <h3 class="text-[#A1A1A9]">Topics:</h3>
+    ${
+      softwareDevelopmentValueFinal.trim() !== ""
+        ? `<li class="topic-one pl-2">${softwareDevelopmentValueFinal}</li>`
+        : ""
+    }
+    ${
+      userExperienceValueFinal.trim() !== ""
+        ? `<li class="topic-two pl-2">${userExperienceValueFinal}</li>`
+        : ""
+    }
+    ${
+      graphicDesignValueFinal.trim() !== ""
+        ? `<li class="topic-three pl-2">${graphicDesignValueFinal}</li>`
+        : ""
+    }
+  </ul>
+
+      <div class="mt-8 flex justify-center">
+        <button type="submit" class="bg-[#652CD1] py-2 px-8 rounded-3xl"
+          >Confirm</button
+        >
+      </div>
+      `;
+      count++;
+      stepContainer.innerHTML = `
+    <h3 class="text-[#4D5562] text-xs font-semibold">Step ${count} of 3</h3>
+          <div class="flex items-center gap-4">
+            <div class="step-one flex justify-center items-center h-4 w-4 rounded-full">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+            <div class="step-two flex justify-center items-center h-4 w-4 rounded-full">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+            <div class="step-three flex justify-center items-center h-4 w-4 rounded-full bg-[#845EEE]/50">
+              <div class="h-2 w-2 rounded-full bg-[#845EEE]"></div>
+            </div>
+          </div>
+        `;
+    }
+  });
+
+  softwareDevelopment.addEventListener("click", () => {
+    softwareDevelopment.classList.toggle("bg-[#845EEE]");
+    softwareDevelopment.classList.toggle("text-[#E5E7EB]");
+  });
+
+  userExperience.addEventListener("click", () => {
+    userExperience.classList.toggle("bg-[#845EEE]");
+    userExperience.classList.toggle("text-[#E5E7EB]");
+  });
+
+  graphicDesign.addEventListener("click", () => {
+    graphicDesign.classList.toggle("bg-[#845EEE]");
+    graphicDesign.classList.toggle("text-[#E5E7EB]");
+  });
+
+  // TERCER FORM
+  //
+
+  const formThree = document.querySelector(".form-three");
+
+  formThree.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    alert("✅ Form submitted successfully.");
+  });
+</script>
